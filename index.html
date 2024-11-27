@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Funciones Matemáticas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Analizador de Funciones Matemáticas</h1>
+
+    <h2>1. Análisis de Función Cuadrática</h2>
+    <form id="quadraticForm">
+        <label for="a">Coeficiente a:</label>
+        <input type="number" id="a" name="a" step="any" required><br>
+        <label for="b">Coeficiente b:</label>
+        <input type="number" id="b" name="b" step="any" required><br>
+        <label for="c">Coeficiente c:</label>
+        <input type="number" id="c" name="c" step="any" required><br>
+        <button type="button" onclick="analyzeQuadratic()">Analizar y Graficar</button>
+    </form>
+    <canvas id="quadraticGraph"></canvas>
+
+    <h2>2. Función Trigonométrica (Seno y Coseno)</h2>
+    <canvas id="trigGraph"></canvas>
+
+    <h2>3. Función de Ajuste Exponencial</h2>
+    <canvas id="expGraph"></canvas>
+
+    <h2>4. Funciones Logarítmicas</h2>
+    <canvas id="logGraph"></canvas>
+
+    <h2>5. Fasores (Representación)</h2>
+    <canvas id="phasorGraph"></canvas>
+
+    <h2>6. Longitud de Arco (Seno)</h2>
+    <div>
+        <label for="arcLength">Intervalo de cálculo (en radianes, por ejemplo, 0 a 2π):</label><br>
+        Desde: <input type="number" id="startArc" value="0" step="any">
+        Hasta: <input type="number" id="endArc" value="6.28" step="any">
+        <button type="button" onclick="calculateArcLength()">Calcular Longitud y Graficar</button>
+    </div>
+    <div id="arcResult"></div>
+    <canvas id="arcGraph"></canvas>
+
+    <script>
+        // Análisis de función cuadrática
+        function analyzeQuadratic() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            if (a === 0) {
+                alert("El valor de 'a' no puede ser 0 para una función cuadrática.");
+                return;
+            }
+
+            const xValues = [];
+            const yValues = [];
+            for (let x = -10; x <= 10; x += 0.1) {
+                xValues.push(x);
+                yValues.push(a * x ** 2 + b * x + c);
+            }
+
+            new Chart(document.getElementById('quadraticGraph'), {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: `y = ${a}x² + ${b}x + ${c}`,
+                        data: yValues,
+                        borderColor: 'blue',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'x' } },
+                        y: { title: { display: true, text: 'y' } }
+                    }
+                }
+            });
+        }
+
+        // Funciones trigonométricas
+        function plotTrigFunctions() {
+            const xValues = [];
+            const sinValues = [];
+            const cosValues = [];
+            for (let x = 0; x <= 2 * Math.PI; x += 0.1) {
+                xValues.push(x.toFixed(2));
+                sinValues.push(Math.sin(x));
+                cosValues.push(Math.cos(x));
+            }
+
+            new Chart(document.getElementById('trigGraph'), {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [
+                        { label: 'Seno', data: sinValues, borderColor: 'red', fill: false },
+                        { label: 'Coseno', data: cosValues, borderColor: 'green', fill: false }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'x (radianes)' } },
+                        y: { title: { display: true, text: 'y' } }
+                    }
+                }
+            });
+        }
+
+        // Función exponencial
+        function plotExpFunction() {
+            const xValues = [];
+            const yValues = [];
+            for (let x = -2; x <= 2; x += 0.1) {
+                xValues.push(x);
+                yValues.push(Math.exp(x));
+            }
+
+            new Chart(document.getElementById('expGraph'), {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'y = e^x',
+                        data: yValues,
+                        borderColor: 'purple',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'x' } },
+                        y: { title: { display: true, text: 'y' } }
+                    }
+                }
+            });
+        }
+
+        // Función logarítmica
+        function plotLogFunction() {
+            const xValues = [];
+            const yValues = [];
+            for (let x = 0.1; x <= 10; x += 0.1) {
+                xValues.push(x);
+                yValues.push(Math.log(x));
+            }
+
+            new Chart(document.getElementById('logGraph'), {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'y = ln(x)',
+                        data: yValues,
+                        borderColor: 'orange',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'x' } },
+                        y: { title: { display: true, text: 'y' } }
+                    }
+                }
+            });
+        }
+
+        // Gráfica de fasores
+        function plotPhasors() {
+            const angleValues = [];
+            const xValues = [];
+            const yValues = [];
+            for (let theta = 0; theta <= 2 * Math.PI; theta += 0.1) {
+                angleValues.push(theta.toFixed(2));
+                xValues.push(Math.cos(theta));
+                yValues.push(Math.sin(theta));
+            }
+
+            new Chart(document.getElementById('phasorGraph'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Fasor',
+                        data: angleValues.map((angle, index) => ({ x: xValues[index], y: yValues[index] })),
+                        backgroundColor: 'red',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'Coseno (x)' } },
+                        y: { title: { display: true, text: 'Seno (y)' } }
+                    }
+                }
+            });
+        }
+
+        // Longitud de arco
+        function calculateArcLength() {
+            const start = parseFloat(document.getElementById('startArc').value);
+            const end = parseFloat(document.getElementById('endArc').value);
+
+            if (start >= end) {
+                alert("El valor inicial debe ser menor que el valor final.");
+                return;
+            }
+
+            const xValues = [];
+            const yValues = [];
+            let arcLength = 0;
+            const step = 0.01;
+            for (let x = start; x <= end; x += step) {
+                const dx = step;
+                const dy = Math.cos(x) * dx;
+                arcLength += Math.sqrt(dx ** 2 + dy ** 2);
+                xValues.push(x);
+                yValues.push(Math.sin(x));
+            }
+
+            document.getElementById('arcResult').innerHTML = `<p>Longitud de arco: ${arcLength.toFixed(2)}</p>`;
+
+            new Chart(document.getElementById('arcGraph'), {
+                type: 'line',
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        label: 'y = sin(x)',
+                        data: yValues,
+                        borderColor: 'teal',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: true },
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'x' } },
+                        y: { title: { display: true, text: 'y' } }
+                    }
+                }
+            });
+        }
+
+        // Llamadas iniciales
+        plotTrigFunctions();
+        plotExpFunction();
+        plotLogFunction();
+        plotPhasors();
+    </script>
+</body>
+</html>
