@@ -1,95 +1,64 @@
-/* Estilo Matemático */
 body {
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f4f4f9;
-    color: #333;
     margin: 0;
-    padding: 20px;
-    line-height: 1.6;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
 }
 
-h1, h2, h3 {
-    font-family: 'Georgia', serif;
-    color: #2a4365;
-}
-
-h1 {
-    text-align: center;
-    border-bottom: 2px solid #2a4365;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-top: 30px;
-    color: #4a5568;
-    border-bottom: 1px solid #cbd5e0;
-    padding-bottom: 5px;
-}
-
-form, div {
-    margin: 20px auto;
-    max-width: 600px;
-}
-
-label {
-    font-weight: bold;
-    color: #2d3748;
-}
-
-input[type="number"] {
+/* Esquinas inferiores */
+.corner {
+    position: absolute;
     width: 100px;
-    padding: 5px;
-    border: 1px solid #cbd5e0;
-    border-radius: 5px;
-    margin: 5px 0;
-    background-color: #edf2f7;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-button {
-    background-color: #3182ce;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    background-image: url('ruta/a/tu/dibujo-esquina-izquierda.png');
 }
 
-button:hover {
-    background-color: #2b6cb0;
+.corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    background-image: url('ruta/a/tu/dibujo-esquina-derecha.png');
 }
 
-#results, #arcResult {
-    margin-top: 15px;
-    background-color: #e2e8f0;
-    border-left: 4px solid #4a5568;
-    padding: 10px;
-    font-family: 'Courier New', Courier, monospace;
+/* Mona china al centro */
+.mona-china {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    background-image: url('ruta/a/tu/mona-china.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-canvas {
-    background-color: #edf2f7;
-    border: 1px solid #cbd5e0;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    display: block;
-    margin: 20px auto;
-}
-
-footer {
-    margin-top: 40px;
+/* Contenedor principal */
+.main-container {
     text-align: center;
-    font-size: 0.9rem;
-    color: #718096;
+    max-width: 800px;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-footer a {
-    color: #3182ce;
-    text-decoration: none;
+.main-container h1 {
+    font-size: 2rem;
+    color: #333;
 }
 
-footer a:hover {
-    text-decoration: underline;
+.main-container p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
 }
