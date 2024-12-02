@@ -22,13 +22,13 @@ body {
 .corner.bottom-left {
     bottom: 0;
     left: 0;
-    background-image: url('ruta/a/tu/dibujo-esquina-izquierda.png');
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FAugusto_Pinochet&psig=AOvVaw1zc4s6CsltdLiULTIHEMnT&ust=1733233128702000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODVneGaiYoDFQAAAAAdAAAAABAE');
 }
 
 .corner.bottom-right {
     bottom: 0;
     right: 0;
-    background-image: url('ruta/a/tu/dibujo-esquina-derecha.png');
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FAugusto_Pinochet&psig=AOvVaw1zc4s6CsltdLiULTIHEMnT&ust=1733233128702000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODVneGaiYoDFQAAAAAdAAAAABAE');
 }
 
 /* Mona china al centro */
@@ -36,7 +36,7 @@ body {
     position: absolute;
     width: 200px;
     height: auto;
-    background-image: url('ruta/a/tu/mona-china.png');
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FAugusto_Pinochet&psig=AOvVaw1zc4s6CsltdLiULTIHEMnT&ust=1733233128702000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCODVneGaiYoDFQAAAAAdAAAAABAE');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
