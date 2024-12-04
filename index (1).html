@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álgebra Lineal: Operaciones con Matrices</title>
+    <style>
+        /* General */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f9fafb;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            background-color: #3e64ff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        /* Contenedor de matrices */
+        .matrix-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .matrix-container h2 {
+            text-align: center;
+            color: #3e64ff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Tablas para matrices */
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 8px;
+            width: 60px;
+            height: 60px;
+            font-size: 1rem;
+            background-color: #f4f4f9;
+        }
+
+        input[type="number"] {
+            width: 90%;
+            height: 90%;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            background-color: transparent;
+        }
+
+        input[type="number"]:focus {
+            outline: 2px solid #3e64ff;
+        }
+
+        /* Botón de calcular */
+        button {
+            background-color: #3e64ff;
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #2b51d3;
+        }
+
+        button:active {
+            background-color: #1f3ea6;
+        }
+
+        /* Resultado */
+        .result {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+
+        /* Pie de página */
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Álgebra Lineal: Operaciones con Matrices</h1>
+        <p>Introduce las matrices y elige una operación para ver el resultado.</p>
+    </header>
+    
+    <form id="matrixForm">
+        <div class="matrix-container">
+            <div>
+                <h2>Matriz A</h2>
+                <table>
+                    <tr>
+                        <td><input type="number" id="a11" required></td>
+                        <td><input type="number" id="a12" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="a21" required></td>
+                        <td><input type="number" id="a22" required></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h2>Matriz B</h2>
+                <table>
+                    <tr>
+                        <td><input type="number" id="b11" required></td>
+                        <td><input type="number" id="b12" required></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="b21" required></td>
+                        <td><input type="number" id="b22" required></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <label for="operation">Elige una operación:</label>
+            <select id="operation" required>
+                <option value="add">Suma</option>
+                <option value="subtract">Resta</option>
+                <option value="multiply">Multiplicación</option>
+                <option value="determinantA">Determinante de A</option>
+                <option value="determinantB">Determinante de B</option>
+            </select>
+            <button type="button" onclick="calculate()">Calcular</button>
+        </div>
+    </form>
+    
+    <div class="result" id="result"></div>
+    
+    <footer>
+        <p>Creado por:</p>
+        <ul>
+            <li><strong>Programador principal:</strong> Jeremi Oporto</li>
+            <li><strong>Documentadores:</strong> Karla Zúñiga, Ilson Veliz</li>
+        </ul>
+        <p>Creado para demostrar conceptos avanzados de álgebra lineal.</p>
+    </footer>
+
+    <script>
+        function calculate() {
+            const a11 = parseFloat(document.getElementById('a11').value);
+            const a12 = parseFloat(document.getElementById('a12').value);
+            const a21 = parseFloat(document.getElementById('a21').value);
+            const a22 = parseFloat(document.getElementById('a22').value);
+            const b11 = parseFloat(document.getElementById('b11').value);
+            const b12 = parseFloat(document.getElementById('b12').value);
+            const b21 = parseFloat(document.getElementById('b21').value);
+            const b22 = parseFloat(document.getElementById('b22').value);
+            const operation = document.getElementById('operation').value;
+
+            let result = '';
+            
+            switch (operation) {
+                case 'add':
+                    result = `
+                        <h2>Resultado (A + B):</h2>
+                        <table>
+                            <tr><td>${a11 + b11}</td><td>${a12 + b12}</td></tr>
+                            <tr><td>${a21 + b21}</td><td>${a22 + b22}</td></tr>
+                        </table>`;
+                    break;
+                case 'subtract':
+                    result = `
+                        <h2>Resultado (A - B):</h2>
+                        <table>
+                            <tr><td>${a11 - b11}</td><td>${a12 - b12}</td></tr>
+                            <tr><td>${a21 - b21}</td><td>${a22 - b22}</td></tr>
+                        </table>`;
+                    break;
+                case 'multiply':
+                    result = `
+                        <h2>Resultado (A × B):</h2>
+                        <table>
+                            <tr><td>${a11 * b11 + a12 * b21}</td><td>${a11 * b12 + a12 * b22}</td></tr>
+                            <tr><td>${a21 * b11 + a22 * b21}</td><td>${a21 * b12 + a22 * b22}</td></tr>
+                        </table>`;
+                    break;
+                case 'determinantA':
+                    result = `<h2>Determinante de A:</h2><p>${a11 * a22 - a12 * a21}</p>`;
+                    break;
+                case 'determinantB':
+                    result = `<h2>Determinante de B:</h2><p>${b11 * b22 - b12 * b21}</p>`;
+                    break;
+                default:
+                    result = `<h2>Error:</h2><p>Operación no válida.</p>`;
+            }
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
