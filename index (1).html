@@ -200,37 +200,37 @@
             
             switch (operation) {
                 case 'add':
-                    result = `
+                    result = 
                         <h2>Resultado (A + B):</h2>
                         <table>
                             <tr><td>${a11 + b11}</td><td>${a12 + b12}</td></tr>
                             <tr><td>${a21 + b21}</td><td>${a22 + b22}</td></tr>
-                        </table>`;
+                        </table>;
                     break;
                 case 'subtract':
-                    result = `
+                    result = 
                         <h2>Resultado (A - B):</h2>
                         <table>
                             <tr><td>${a11 - b11}</td><td>${a12 - b12}</td></tr>
                             <tr><td>${a21 - b21}</td><td>${a22 - b22}</td></tr>
-                        </table>`;
+                        </table>;
                     break;
                 case 'multiply':
-                    result = `
+                    result = 
                         <h2>Resultado (A × B):</h2>
                         <table>
                             <tr><td>${a11 * b11 + a12 * b21}</td><td>${a11 * b12 + a12 * b22}</td></tr>
                             <tr><td>${a21 * b11 + a22 * b21}</td><td>${a21 * b12 + a22 * b22}</td></tr>
-                        </table>`;
+                        </table>;
                     break;
                 case 'determinantA':
-                    result = `<h2>Determinante de A:</h2><p>${a11 * a22 - a12 * a21}</p>`;
+                    result = <h2>Determinante de A:</h2><p>${a11 * a22 - a12 * a21}</p>;
                     break;
                 case 'determinantB':
-                    result = `<h2>Determinante de B:</h2><p>${b11 * b22 - b12 * b21}</p>`;
+                    result = <h2>Determinante de B:</h2><p>${b11 * b22 - b12 * b21}</p>;
                     break;
                 default:
-                    result = `<h2>Error:</h2><p>Operación no válida.</p>`;
+                    result = <h2>Error:</h2><p>Operación no válida.</p>;
             }
             document.getElementById('result').innerHTML = result;
         }
