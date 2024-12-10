@@ -5,122 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Álgebra Lineal: Operaciones con Matrices</title>
     <style>
-        /* General */
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #f9fafb;
-            color: #333;
-            margin: 20px;
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
+            color: #2c3e50;
+            margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
 
-        /* Encabezado */
         header {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px 10px;
             text-align: center;
-            background-color: #3e64ff;
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            font-size: 2.5rem;
             margin: 0;
+            font-size: 2.5em;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
 
-        /* Contenedor de matrices */
         .matrix-container {
             display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 20px 10px;
         }
 
-        .matrix-container h2 {
+        h2 {
+            font-size: 1.5em;
             text-align: center;
-            color: #3e64ff;
-            font-size: 1.5rem;
             margin-bottom: 10px;
         }
 
-        /* Tablas para matrices */
         table {
+            width: 100%;
+            max-width: 200px;
             border-collapse: collapse;
-            margin: 0 auto;
-            background-color: #fff;
-            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            margin: 0 auto 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
             overflow: hidden;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         th, td {
+            border: none;
+            padding: 10px;
             text-align: center;
-            padding: 8px;
-            width: 60px;
-            height: 60px;
-            font-size: 1rem;
-            background-color: #f4f4f9;
+            font-size: 1.2em;
         }
 
         input[type="number"] {
-            width: 90%;
-            height: 90%;
-            border: none;
+            width: 60px;
+            padding: 5px;
+            font-size: 1em;
             text-align: center;
-            font-size: 1rem;
-            background-color: transparent;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
         }
 
-        input[type="number"]:focus {
-            outline: 2px solid #3e64ff;
-        }
-
-        /* Botón de calcular */
-        button {
-            background-color: #3e64ff;
-            color: #fff;
-            font-size: 1rem;
+        select, button {
+            font-size: 1em;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        select {
+            background: #bdc3c7;
+            color: #2c3e50;
+        }
+
+        button {
+            background: #2c3e50;
+            color: #ecf0f1;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
         }
 
         button:hover {
-            background-color: #2b51d3;
+            background: #34495e;
         }
 
-        button:active {
-            background-color: #1f3ea6;
-        }
-
-        /* Resultado */
         .result {
+            background: #ecf0f1;
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
             text-align: center;
-            font-size: 1.2rem;
-            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Pie de página */
         footer {
+            background: #2c3e50;
+            color: #ecf0f1;
             text-align: center;
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 40px;
-            border-top: 1px solid #ddd;
-            padding: 10px 0;
+            padding: 10px;
+            font-size: 0.9em;
+        }
+
+        .credits {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .credits p {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -176,13 +178,13 @@
     <div class="result" id="result"></div>
     
     <footer>
-        <p>Creado por:</p>
-        <ul>
-            <li><strong>Programador principal:</strong> Jeremi Oporto</li>
-            <li><strong>Documentadores:</strong> Karla Zúñiga, Ilson Veliz</li>
-        </ul>
-        <p>Creado para demostrar conceptos avanzados de álgebra lineal.</p>
+        <p>Creado para demostrar conceptos básicos de operaciones con matrices.</p>
     </footer>
+
+    <div class="credits">
+        <p><strong>Creado por:</strong> Jeremi Oporto</p>
+        <p><strong>Documentadores:</strong> Karla Zúñiga, Ilson Veliz, Armando Fredes</p>
+    </div>
 
     <script>
         function calculate() {
@@ -197,40 +199,42 @@
             const operation = document.getElementById('operation').value;
 
             let result = '';
-            
-            switch (operation) {
-                case 'add':
-                    result = 
-                        <h2>Resultado (A + B):</h2>
-                        <table>
-                            <tr><td>${a11 + b11}</td><td>${a12 + b12}</td></tr>
-                            <tr><td>${a21 + b21}</td><td>${a22 + b22}</td></tr>
-                        </table>;
-                    break;
-                case 'subtract':
-                    result = 
-                        <h2>Resultado (A - B):</h2>
-                        <table>
-                            <tr><td>${a11 - b11}</td><td>${a12 - b12}</td></tr>
-                            <tr><td>${a21 - b21}</td><td>${a22 - b22}</td></tr>
-                        </table>;
-                    break;
-                case 'multiply':
-                    result = 
-                        <h2>Resultado (A × B):</h2>
-                        <table>
-                            <tr><td>${a11 * b11 + a12 * b21}</td><td>${a11 * b12 + a12 * b22}</td></tr>
-                            <tr><td>${a21 * b11 + a22 * b21}</td><td>${a21 * b12 + a22 * b22}</td></tr>
-                        </table>;
-                    break;
-                case 'determinantA':
-                    result = <h2>Determinante de A:</h2><p>${a11 * a22 - a12 * a21}</p>;
-                    break;
-                case 'determinantB':
-                    result = <h2>Determinante de B:</h2><p>${b11 * b22 - b12 * b21}</p>;
-                    break;
-                default:
-                    result = <h2>Error:</h2><p>Operación no válida.</p>;
+            if (operation === 'add') {
+                result = `
+                    <h2>Resultado (A + B):</h2>
+                    <table>
+                        <tr><td>${a11 + b11}</td><td>${a12 + b12}</td></tr>
+                        <tr><td>${a21 + b21}</td><td>${a22 + b22}</td></tr>
+                    </table>
+                `;
+            } else if (operation === 'subtract') {
+                result = `
+                    <h2>Resultado (A - B):</h2>
+                    <table>
+                        <tr><td>${a11 - b11}</td><td>${a12 - b12}</td></tr>
+                        <tr><td>${a21 - b21}</td><td>${a22 - b22}</td></tr>
+                    </table>
+                `;
+            } else if (operation === 'multiply') {
+                result = `
+                    <h2>Resultado (A × B):</h2>
+                    <table>
+                        <tr>
+                            <td>${a11 * b11 + a12 * b21}</td>
+                            <td>${a11 * b12 + a12 * b22}</td>
+                        </tr>
+                        <tr>
+                            <td>${a21 * b11 + a22 * b21}</td>
+                            <td>${a21 * b12 + a22 * b22}</td>
+                        </tr>
+                    </table>
+                `;
+            } else if (operation === 'determinantA') {
+                const determinantA = a11 * a22 - a12 * a21;
+                result = `<h2>Determinante de A:</h2><p>${determinantA}</p>`;
+            } else if (operation === 'determinantB') {
+                const determinantB = b11 * b22 - b12 * b21;
+                result = `<h2>Determinante de B:</h2><p>${determinantB}</p>`;
             }
             document.getElementById('result').innerHTML = result;
         }
